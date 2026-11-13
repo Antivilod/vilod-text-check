@@ -4,7 +4,7 @@ import json
 from pathlib import Path
 import re
 
-VERSION = '0.1.0'
+VERSION = '0.2.0'
 MAX_BYTES = 16 * 1024 * 1024
 MAX_ISSUES = 1000
 
@@ -49,6 +49,8 @@ def check(raw, max_line_length=None, allow_long_dashes=False):
         trailing = re.search(r'[ \t]+$', line)
         if trailing:
             add('trailing_whitespace', number, trailing.start() + 1)
+        for match in re.finditer(r'[\u202A-\u202E\u2066-\u2069]', line):
+            add('bidi_control', number, match.start() + 1)
         if '\x00' in line:
             add('nul_character', number, line.index('\x00') + 1)
         if max_line_length is not None and len(line) > max_line_length:

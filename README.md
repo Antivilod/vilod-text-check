@@ -29,3 +29,9 @@ A consistent CRLF file is accepted. An empty file is accepted. Reports contain c
 Source preview 0.1.0. Ten unit tests and CLI smoke checks passed on Linux. Windows has not been tested. No network requests, accounts or telemetry. Python source only, no EXE installer.
 
 MIT, copyright (c) 2026 Vilod. See LICENSE and SECURITY.md.
+
+## New in 0.2.0
+
+Reports the line and column of bidirectional formatting controls. These can be legitimate in mixed-direction text, so inspect the location before editing.
+
+`python text_check.py example.txt`
